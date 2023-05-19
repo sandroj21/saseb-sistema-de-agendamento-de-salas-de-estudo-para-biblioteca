@@ -1,1 +1,1 @@
-# saseb-sistema-de-agendamento-de-salas-de-estudo-para-biblioteca
+# SASEB - Sistema de Agendamento de Salas de Estudo para Biblioteca
