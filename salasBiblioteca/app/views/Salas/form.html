@@ -1,0 +1,56 @@
+#{extends 'main.html' /} 
+#{set title:'Formulario de Cadastro de Salas'/}
+
+
+<main class="content">
+	<div class="container-fluid p-0">
+
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-title">Cadastro de Salas</h5>
+			</div>
+			<div class="card-body">
+				<form action="@{Salas.salvar()}">
+				<input type="hidden" name="sala.id" value="${sala?.id}">
+					<div class="mb-3">
+						<span class="badge bg-danger rounded-pill">#{ifError 'sala.numeroIdentificacao'} #{error 'sala.numeroIdentificacao' /} #{/ifError}</span><br>
+						<label class="form-label">Numero de Identificacao</label> <input
+							type="text" name="sala.numeroIdentificacao" value="${flash['sala.numeroIdentificacao'] != null ? flash['sala.numeroIdentificacao'] : sala?.numeroIdentificacao}" class="form-control"
+							placeholder="Numero de Identificacao">
+					</div>
+					
+					#{if sala?.id == null}
+					<span class="badge bg-danger rounded-pill">#{ifError 'sala.tipo'} #{error 'sala.tipo' /} #{/ifError}</span><br>
+					Tipo:<br>
+	
+					<select name="sala.tipo">
+						<option></option>
+						#{list items:tiposDeSalas, as:'tiposSalas'}
+							<option>${tiposSalas}</option>
+						#{/list}
+					</select><br>
+	
+					#{/if}
+					<br>
+					<button class="btn btn-primary">Salvar</button>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xl-6 col-xxl-5 d-flex">
+				<div class="w-100">
+					<div class="row">
+						<div class="col-sm-6"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</main>
+
+
+
+
+</html>
+

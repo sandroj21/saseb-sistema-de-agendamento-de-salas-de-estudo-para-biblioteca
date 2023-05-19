@@ -1,0 +1,34 @@
+#{extends 'main.html' /} #{set title:'Listagem de Alunos Cadastrados' /}
+
+<meta charset="utf-8">
+<h1 class="h3 mb-3">Listagem de Alunos Cadastrados</h1>
+
+<span class="alert alert-primary alert-dismissible">Você encontrou um total de ${listaAlunos.size()} registros</span>
+<br>
+
+<input type="hidden" name="aluno.id" value="${aluno?.id}">
+
+<table class="table">
+	<thead>
+		<tr>
+			<th style="width: 40%;">Nome</th>
+			<th style="width: 25%">Matricula</th>
+			<th class="d-none d-md-table-cell" style="width: 25%">Email</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		#{list items: listaAlunos, as: 'aluno'}
+			<tr>
+			<td><a href="@{Alunos.detalhes(aluno.id)}">${aluno.nome}</a></td>
+			<td>${aluno.matricula}</td>
+			<td class="d-none d-md-table-cell">${aluno.email}</td>
+			<td class="table-action"><a class="btn btn-outline-secondary" href="@{Alunos.editar(aluno.id)}">Editar</a>
+			<a class="btn btn-outline-danger" href="@{Alunos.remover(aluno.id)}">Remover</a></td>
+			</tr>
+		#{/list} #{else} Não há alunos cadastrados #{/else}
+		
+	</tbody>
+</table>
+
+<a class="btn btn-primary" href="@{Alunos.form()}">Cadastrar Alunos</a>

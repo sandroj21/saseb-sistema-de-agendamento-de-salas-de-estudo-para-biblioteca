@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="${_response_encoding}">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="AdminKit">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+	<title>#{get 'title' /}</title>
+        <meta charset="${_response_encoding}">
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+        #{get 'moreStyles' /}
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+	<style type="text/css">
+		
+	
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<nav id="sidebar" class="sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="@{Application.index()}">
+          <span class="align-middle">SASEB</span>
+        </a>
+
+				<ul class="sidebar-nav">
+					<li class="sidebar-header">
+						Cadastros
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="@{Alunos.form()}">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Cadastrar Alunos</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="@{Agendamentos.form()}">
+              <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Cadastrar Agendamentos</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="@{Salas.form()}">
+              <i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Cadastrar Salas</span>
+            </a>
+					</li>
+
+
+					<li class="sidebar-header">
+						Listas
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="@{Alunos.listar()}">
+              <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Listar Alunos</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="@{Agendamentos.listar()}">
+              <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Listar Agendamentos</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="@{Salas.listar()}">
+              <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Listar Salas</span>
+            </a>
+					</li>
+
+					
+				</ul>
+			
+			</div>
+			
+		</nav>
+
+		<div class="main">
+			<nav class="navbar navbar-expand navbar-light navbar-bg">
+				<a class="sidebar-toggle d-flex">
+          <i class="hamburger align-self-center"></i>
+        </a>
+
+				<span>Sistema de Agendamentos de Salas de Estudo para Biblioteca</span>
+
+				<div class="navbar-collapse collapse">
+					<ul class="navbar-nav navbar-align">
+						<li class="nav-item dropdown">
+							<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-toggle="dropdown">
+								<div class="position-relative">
+								</div>
+							</a>
+							
+						</li>
+						
+						<li class="nav-item dropdown">
+						<span class="badge bg-secondary">${session.get("usuario.nome")}</span>
+							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
+                <i class="align-middle" data-feather="settings"></i>
+              </a>
+							
+								<a class="dropdown-item" href="@{Login.sair()}">Sair</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+			<main class="content">
+			
+				<div class="container-fluid p-0">
+					#{if flash.success}
+						<p class="alert alert-success alert-dismissible">${flash.success}</p>
+					#{/if}
+					#{elseif flash.error}
+						<p style="font-size:15px; padding:10px;" class="alert alert-danger alert-error">${flash.error}</p>
+					#{/elseif}
+					#{doLayout /}
+					
+					<div class="row">
+						<div class="col-xl-6 col-xxl-5 d-flex">
+							<div class="w-100">
+								<div class="row">
+									<div class="col-sm-6">
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			
+				</div>
+			</main>
+	
+			
+			
+		</div>
+	</div>
+
+	
+</body>
+
+</html>

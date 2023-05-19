@@ -1,0 +1,42 @@
+#{extends 'main.html' /} #{set title:'Listagem de Agendamentos' /}
+
+<meta charset="utf-8">
+
+<h1 class="h3 mb-3">Listagem de Agendamentos</h1>
+
+<span class="alert alert-primary alert-dismissible">Você encontrou um total de ${agendamentos.size()} registros</span>
+<br>
+
+
+<input type="hidden" name="agenda.id" value="${agenda?.id}">
+
+
+<table class="table">
+	<thead>
+		<tr>
+			<th style="width: 20%;">Solicitante</th>
+			<th style="width: 20%">Matricula do Solicitante</th>
+			<th style="width: 20%;">Justificativa</th>
+			<th style="width: 20%;">Horario</th>
+			<th style="width: 20%;">Sala</th>
+			<th style="width: 20%;">Situacao</th>
+		</tr>
+	</thead>
+	#{list items: agendamentos, as:'agendamentos'}
+	<tbody>
+		<tr>
+			<td>${agendamentos?.usuario?.nome}</td>
+			<td>${agendamentos?.usuario?.matricula}</td>
+			<td>${agendamentos?.justificativa}</td>
+			<td>${agendamentos?.horario}</td>
+			<td>${agendamentos?.sala?.numeroIdentificacao}
+			<td>${agendamentos?.situacao}
+			<td class="table-action"><a class="btn btn-outline-secondary" href="@{Agendamentos.deferir(agendamentos.id)}">Deferir</a> <a class="btn btn-outline-danger" href="@{Agendamentos.indeferir(agendamentos.id)}">Indeferir</a></td>
+			<td class="table-action"><a class="btn btn-outline-secondary" href="@{Agendamentos.editar(agendamentos.id)}">Editar</a> <a class="btn btn-outline-danger" href="@{Agendamentos.remover(agendamentos.id)}">Remover</a></td>
+			
+		</tr>
+		#{/list} #{else} Não há agendamentos cadastrados #{/else}
+	</tbody>
+</table>
+
+<a class="btn btn-primary" href="@{Agendamentos.form()}">Cadastrar Agendamentos</a>

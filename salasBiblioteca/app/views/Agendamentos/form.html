@@ -1,0 +1,61 @@
+#{extends 'main.html' /} #{set title:'Formulario de Cadastro de
+Agendamentos' /}
+
+<main class="content">
+	<div class="container-fluid p-0">
+
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-title">Cadastro de Agendamentos</h5>
+			</div>
+			<div class="card-body">
+				<form action="@{Agendamentos.salvar()}" method="POST">
+				<input type="hidden" name="agenda.id" value="${agenda?.id}">
+			
+					<div class="mb-3">
+						<span class="badge bg-danger rounded-pill">#{ifError 'agenda.justificativa'} #{error 'agenda.justificativa' /} #{/ifError}</span><br>
+						<label class="form-label">Justificativa:</label> <input type="text"
+							class="form-control" placeholder="Justificativa" name="agenda.justificativa" value="${flash['agenda.justificativa'] != null ? flash['agenda.justificativa'] : agenda?.justificativa}">
+					</div>
+				
+					<span class="badge bg-danger rounded-pill">#{ifError 'agenda.usuario'} #{error 'agenda.usuario' /} #{/ifError}</span><br>
+					Usuario:<br>
+					<select name="agenda.usuario.id">
+						<option value="1"></option>
+					#{list items: usuarios, as: 'usuario'}
+						<option value="${flash['usuario.id'] != null ? flash['usuario.id'] : usuario.id}" #{if usuario?.id == agenda?.usuario?.id } selected #{/if}>${usuario.nome}</option>
+					#{/list}
+					</select>
+					<br>
+					<span class="badge bg-danger rounded-pill">#{ifError 'agenda.horario'} #{error 'agenda.horario' /} #{/ifError}</span><br>
+						Horario:
+						<input type="time" name="agenda.horario" value="${flash['agenda.horario'] != null ? flash['agenda.horario'] : agenda?.horario}">
+						<br>
+						<br>
+						<span class="badge bg-danger rounded-pill">#{ifError 'agenda.sala'} #{error 'agenda.sala' /} #{/ifError}</span><br>
+					Sala:
+				<select name="agenda.sala.id">
+					<option value=""></option>
+					#{list items:salas, as:'sala'}
+						<option value="${flash['sala.id'] != null ? flash['sala.id'] : sala?.id}" #{if agenda?.sala?.id == sala?.id} selected #{/if}>${sala.numeroIdentificacao} - ${sala.tipo}</option>
+					#{/list}	
+				</select> <br>
+				
+				<br>
+					
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xl-6 col-xxl-5 d-flex">
+				<div class="w-100">
+					<div class="row">
+						<div class="col-sm-6"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</main>

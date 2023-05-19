@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cadastre-se</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="@{'public/stylesheets/bootstrap.min.css'}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="@{'public/stylesheets/font-awesome.min.css'}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="@{'public/stylesheets/animate.css'}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="@{'public/stylesheets/hamburgers.min.css'}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="@{'public/stylesheets/select2.min.css'}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="@{'public/stylesheets/util.css'}">
+	<link rel="stylesheet" type="text/css" href="@{'public/stylesheets/estilo.css'}">
+<!--===============================================================================================-->
+	<style type="text/css">
+		body{
+			font-family: cambria;
+		}
+	</style>
+
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="@{'public/images/img-01.png'}" alt="IMG">
+				</div>
+
+				<form action="@{Login.salvarUsuario()}" class="login100-form validate-form" method="POST">
+					<input type="hidden" name="usuarioID" value="${usuario?.id}">
+					<span class="login100-form-title">
+						Cadastre-se
+					</span>
+					
+					<div class="wrap-input100 validate-input">
+						<span class="badge bg-danger rounded-pill">#{ifError 'usuario.nome'} #{error 'usuario.nome' /} #{/ifError}</span>
+						<input class="input100" type="text" name="usuario.nome" placeholder="Nome do Usuario" value="${flash['usuario.nome'] != null ? flash['usuario.nome'] : usuario?.nome}">
+						<span class="focus-input100"></span>
+						
+					</div>
+
+					<div class="wrap-input100 validate-input" >
+					<span class="badge bg-danger rounded-pill">#{ifError 'usuario.email'} #{error 'usuario.email' /} #{/ifError}</span>
+						<input class="input100" type="text" name="usuario.email" placeholder="Email" value="${flash['usuario.email'] != null ? flash['usuario.email'] : usuario?.email}">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+						<span class="badge bg-danger rounded-pill">#{ifError 'usuario.matricula'} #{error 'usuario.matricula' /} #{/ifError}</span>
+						<input class="input100" type="text" name="usuario.matricula" placeholder="Matricula" value="${flash['usuario.matricula'] != null ? flash['usuario.matricula'] : usuario?.matricula}">
+						<span class="focus-input100"></span>
+						
+					</div>
+					
+					<div class="wrap-input100 validate-input">
+						<span class="badge bg-danger rounded-pill">#{ifError 'usuario.senha'} #{error 'usuario.senha' /} #{/ifError}</span>
+						<input class="input100" type="password" name="usuario.senha" placeholder="Senha">
+						<span class="focus-input100"></span>
+						
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Cadastrar
+						</button>
+					</div>
+
+					
+
+					<div class="text-center p-t-136">
+						<a class="txt2" href="@{Login.fazerLogin()}">
+							Já tem conta? Clique aqui
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	

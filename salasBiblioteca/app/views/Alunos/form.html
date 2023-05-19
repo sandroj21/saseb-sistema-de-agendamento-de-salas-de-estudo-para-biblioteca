@@ -1,0 +1,56 @@
+#{extends 'main.html' /} #{set title:'Formulario de Cadastro de Alunos'
+/}
+
+<main class="content">
+	<div class="container-fluid p-0">
+
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-title">Cadastro de Alunos</h5>
+			</div>
+			<div class="card-body">
+				<form action="@{Alunos.salvar()}" method="POST">
+				<input type="hidden" name="alu.id" value="${alu?.id}">
+					<div class="mb-3">
+						<span class="badge bg-danger rounded-pill">#{ifError 'alu.nome'} #{error 'alu.nome' /} #{/ifError}</span><br>
+						<label class="form-label">Nome</label> <input type="text"
+							class="form-control" placeholder="Nome" name="alu.nome" value="${flash['alu.nome'] != null ? flash['alu.nome'] : alu?.nome}">
+					</div>
+					
+					<div class="mb-3">
+						<span class="badge bg-danger rounded-pill">#{ifError 'alu.email'} #{error 'alu.email' /} #{/ifError}</span><br>
+						<label class="form-label">Email</label> <input type="email"
+							class="form-control" placeholder="Email" name="alu.email" value="${flash['alu.email'] != null ? flash['alu.email'] : alu?.email}">
+					</div>
+					
+					<div class="mb-3">
+						<span class="badge bg-danger rounded-pill">#{ifError 'alu.matricula'} #{error 'alu.matricula' /} #{/ifError}</span><br>
+						<label class="form-label">Matricula</label> <input type="text"
+							class="form-control" placeholder="Matricula" name="alu.matricula" value="${flash['alu.matricula'] != null ? flash['alu.matricula'] : alu?.matricula}">
+					</div>
+
+				#{if alu?.id == null}
+					<div class="mb-3">
+						<span class="badge bg-danger rounded-pill">#{ifError 'alu.senha'} #{error 'alu.senha' /} #{/ifError}</span><br>
+						<label class="form-label">Senha</label> <input type="password"
+							class="form-control" placeholder="Senha" name="alu.senha">
+					</div>
+				#{/if}
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</form>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="col-xl-6 col-xxl-5 d-flex">
+				<div class="w-100">
+					<div class="row">
+						<div class="col-sm-6"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</main>
+

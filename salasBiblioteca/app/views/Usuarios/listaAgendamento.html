@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="AdminKit">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+	<title>Listagem de Agendamentos</title>
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+	<style type="text/css">
+		body{
+			font-family: cambria;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<nav id="sidebar" class="sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="@{Usuarios.index()}">
+          <span class="align-middle">SASEB</span>
+        </a>
+
+				<ul class="sidebar-nav">
+					<li class="sidebar-header">
+						Cadastro
+					</li>
+
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="@{Usuarios.cadastroAgendamento()}">
+              <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Cadastrar Agendamentos</span>
+            </a>
+					</li>
+
+
+
+					<li class="sidebar-header">
+						Lista
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="@{Usuarios.listaAgendamento()}">
+              <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Meus Agendamentos</span>
+            </a>
+					</li>
+
+					
+
+					
+				</ul>
+				
+			</div>
+		</nav>
+
+		<div class="main">
+			<nav class="navbar navbar-expand navbar-light navbar-bg">
+				<a class="sidebar-toggle d-flex">
+          <i class="hamburger align-self-center"></i>
+        </a>
+
+				<span>Sistema de Agendamentos de Salas de Estudo para Biblioteca</span>
+
+				<div class="navbar-collapse collapse">
+					<ul class="navbar-nav navbar-align">
+						<li class="nav-item dropdown">
+							<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-toggle="dropdown">
+								<div class="position-relative">
+								</div>
+							</a>
+							
+						</li>
+						
+						<li class="nav-item dropdown">
+							<span class="badge bg-secondary">${session.get("usuario.nome")}</span>
+							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
+                <i class="align-middle" data-feather="settings"></i>
+              </a>
+					
+                  <a class="dropdown-item" href="@{Login.sair()}">Sair</a>
+              </a>
+							<div class="dropdown-menu dropdown-menu-right">
+								
+							</div>
+						</li>
+					</ul>
+					
+				</div>
+			</nav>
+
+			<main class="content">
+				#{if flash.success}
+						<p class="alert alert-success alert-dismissible">${flash.success}</p>
+					#{/if}
+					#{elseif flash.error}
+						<p style="font-size:15px; padding:10px;" class="alert alert-danger alert-error">${flash.error}</p>
+					#{/elseif}
+			
+				<h1 class="h3 mb-3">Listagem de Agendamentos</h1>
+
+<span class="alert alert-primary alert-dismissible">Você encontrou um total de ${agendamentos?.size()} registros</span>
+
+
+
+<input type="hidden" name="agenda.id" value="${agenda?.id}">
+<input type="hidden" name="usuario.id" value="${usuario?.id}">
+
+<table class="table">
+	<thead>
+		<tr>
+			<th style="width: 40%;">Nome do Aluno</th>
+			<th style="width: 25%">Justificativa</th>
+			<th class="d-none d-md-table-cell" style="width: 25%">Horario</th>
+			<th>Sala</th>
+			<th>Situacao</th>
+		</tr>
+	</thead>
+	#{list items: agendamentos, as:'agendamentos'}
+	<tbody>
+		<tr>
+			<td>${agendamentos?.usuario?.nome}</td>
+			<td>${agendamentos?.justificativa}</td>
+			<td>${agendamentos?.horario}</td>
+			<td>${agendamentos?.sala?.numeroIdentificacao}
+			<td>${agendamentos?.situacao}
+			<td class="table-action"><a class="btn btn-outline-secondary" href="@{Usuarios.editarAgendamento(agendamentos.id)}">Editar</a> <a class="btn btn-outline-danger" href="@{Usuarios.removerAgendamento(agendamentos.id)}">Remover</a></td>
+		</tr>
+		#{/list} #{else} Não há agendamentos cadastrados #{/else}
+	</tbody>
+</table>
+
+<a class="btn btn-primary" href="@{Usuarios.cadastroAgendamento()}">Cadastrar Agendamentos</a>
+			
+				<div class="container-fluid p-0">
+					
+					<div class="row">
+						<div class="col-xl-6 col-xxl-5 d-flex">
+							<div class="w-100">
+								<div class="row">
+									<div class="col-sm-6">
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</main>
+	
+			
+			
+		</div>
+	</div>
+
+	
+</body>
+
+</html>
+
+
+<meta charset="utf-8">
+
